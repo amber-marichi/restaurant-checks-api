@@ -3,7 +3,7 @@ from django.db import models
 
 PRINT_TYPE_CHOICES = [
     ("CLT", "client"),
-    ("KTN", "kitchen"),
+    ("KIT", "kitchen"),
 ]
 
 
