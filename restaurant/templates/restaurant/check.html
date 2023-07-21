@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+
+		<style>
+			.check-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.check-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.check-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.check-box table tr td:nth-child(2) {
+        text-align: right;
+      }
+
+			.check-box table tr.information table td {
+				padding-bottom: 40px;
+				text-align: right;
+			}
+
+			.check-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.check-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.check-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.check-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			.footer {
+				margin-top: 20px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="check-box">
+			<table cellpadding="0" cellspacing="0">				
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Order ID: {{ check_data.order.order_id }}<br />
+									Point ID: {{ check_data.printer_id.point_id }}<br />
+									Check Type: {{ check_data.get_type_display }}
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>
+									"Restaurant name"<br />
+									15, Main Street<br />
+									feedback@restaurantmails.com
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Item</td>
+
+					<td>Price</td>
+				</tr>
+				{% for key, value in check_data.order.items %}
+          {% if key != 'order_id' and key != 'location_id' %}
+						<tr class="item">
+							<td>{{ key }}</td>
+		
+							<td>${{ value }}</td>
+						</tr>
+          {% endif %}
+        {% endfor %}
+
+				<tr class="total">
+					<td></td>
+
+					<td>Total: $---</td>
+				</tr>
+			</table>
+		</div>
+		<div class="footer">
+			<p>Thank you for your purchase! Have a good day.</p>
+		</div>
+	</body>
+</html>
