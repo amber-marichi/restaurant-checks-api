@@ -14,6 +14,7 @@ from restaurant.serializers import (
     PrinterSerializer,
     PrinterCreateSerializer,
 )
+from restaurant.tasks import process_pdf_check
 
 
 class CheckViewSet(
@@ -53,6 +54,7 @@ def add_new_order(request: HttpRequest) -> HttpResponse:
                 type=printer.check_type,
                 order=order_data,
             )
+            process_pdf_check.delay(new_check.id)
 
         return Response("Checks created successfully.", status=status.HTTP_201_CREATED)
 

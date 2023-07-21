@@ -135,3 +135,7 @@ PDF_URL = os.environ.get("PDF_URL")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery settings
+CELERY_BROKER_URL = os.environ.get("BROKER_URL")
+CELERY_RESULT_BACKEND = os.environ.get("RESULT_BACKEND_URL")
