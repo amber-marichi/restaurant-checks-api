@@ -17,4 +17,4 @@ urlpatterns = [
     path("", include(router.urls)),
 ]
 
-app_name = "printing"
+app_name = "restaurant"
